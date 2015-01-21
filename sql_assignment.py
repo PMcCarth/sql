@@ -25,10 +25,10 @@ with sqlite3.connect("newnum.db") as connection:
 
 #we create a dictionary of choices and commands to pull from
 choice = {
-          "AVG": "SELECT avg(integer) FROM num",
-          "MAX": "SELECT max(integer) FROM num",
-          "MIN": "SELECT min(integer) FROM num",
-          "SUM": "SELECT sum(integer) FROM num"
+          "AVG": "SELECT avg(num) FROM integer",
+          "MAX": "SELECT max(num) FROM integer",
+          "MIN": "SELECT min(num) FROM integer",
+          "SUM": "SELECT sum(num) FROM integer"
           }
 
 #prompt the user
@@ -39,6 +39,8 @@ init_prompt = easygui.ynbox("Would you like to aggregate the data?", "")
 if init_prompt is True:
     aggregation = easygui.buttonbox("Please choose your aggregation", "", ("AVG", "MAX", "MIN", "SUM"))
     c.execute(choice[aggregation])
+    result = easygui.msgbox(c.fetchone(), 'Result')
+
 
 
 else:
